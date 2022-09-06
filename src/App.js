@@ -1,7 +1,21 @@
-import React, {useState} from 'react' 
+import React, {useState, useEffect} from 'react' 
 import './App.css';
 
 function App() {
+
+  const [clientes, setClientes] = useState([])
+
+  useEffect(() => {
+    fetch("http://rm87203whycrytest.azurewebsites.net/api/user/").then((resp) => {
+      return resp.json();
+    }).then((resp) => {
+      setClientes(resp);
+      console.log(resp);
+    }).catch((error) => {
+      console.log(error);
+    })
+  },[])
+
   const [novo, setNovo] = useState({
     nome: "",
     email: ""
@@ -16,11 +30,11 @@ function App() {
   const handleSubmit = (e) =>{
     e.preventDefault()
 
-    fetch("http://localhost:8080/api/user/", {
+    fetch("http://rm87203whycrytest.azurewebsites.net/api/user", {
       method: "POST",
       headers: {
-        Accept: 'aplication/json',
-        "Content-Type": "aplication/json"
+        Accept: 'application/json',
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         nome: novo.nome,
@@ -30,6 +44,12 @@ function App() {
       console.log(novo)
     })
   }
+
+ 
+
+
+
+
 
 
 
@@ -50,6 +70,29 @@ function App() {
           </div>
         </fieldset>
       </form>
+
+      <div>
+        <h1>Lista de Clientes</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientes.map((cliente) => (
+              <tr key={cliente.id}>
+                <td>{cliente.id}</td>
+                <td>{cliente.nome}</td>
+                <td>{cliente.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
