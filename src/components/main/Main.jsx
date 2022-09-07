@@ -10,6 +10,7 @@ export default function Main(){
             <Routes>
                 <Route path="/" element={<Cadastro/>}/>
                 <Route path="/cadastro" element={<Cadastro/>}/>
+                <Route path="/editar/:id" element={<Cadastro/>}/>
                 <Route path="/lista" element={<Lista/>} />
             </Routes>
         </BrowserRouter>
