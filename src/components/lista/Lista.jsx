@@ -23,7 +23,7 @@ export default function Lista() {
   }, []);
 
   const handleDelete = (id) =>{
-    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente" + id, {
+    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente/" + id, {
       method: "DELETE"
     }).then(() => {
       window.location = "/lista"

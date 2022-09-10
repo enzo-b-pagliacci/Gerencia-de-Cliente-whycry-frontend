@@ -35,7 +35,7 @@ export default function Lista(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente" + (id? id : ""), {
+    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente/" + (id? id : ""), {
       method: metodo,
       headers: {
         Accept: "application/json",
@@ -57,7 +57,7 @@ export default function Lista(props) {
 
   useEffect(() => {
     if(id){
-      fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente" + id)
+      fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente/" + id)
       .then((resp) => {
         return(resp.json())
       }).then((data) => {
