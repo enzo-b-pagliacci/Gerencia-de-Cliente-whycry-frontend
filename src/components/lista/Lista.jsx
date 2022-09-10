@@ -9,7 +9,7 @@ export default function Lista() {
   const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/cliente")
+    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente")
       .then((resp) => {
         return resp.json();
       })
@@ -23,7 +23,7 @@ export default function Lista() {
   }, []);
 
   const handleDelete = (id) =>{
-    fetch("http://localhost:8080/api/cliente/" + id, {
+    fetch("https://rm87203backendwhycry1.azurewebsites.net/api/cliente" + id, {
       method: "DELETE"
     }).then(() => {
       window.location = "/lista"
